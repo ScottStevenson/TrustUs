@@ -8,3 +8,142 @@
 @import "components/aligners";
 @import "components/typography";
 
+.windmill-container {
+  position:relative;
+  width:100%;
+  margin:0 auto;
+  height:387px;
+  padding:0;
+}
+
+.sign {
+  background:#000;
+  clear:both;
+  color:#fff;
+  text-align:center;
+  padding:2.5em 40px 3.5em;
+  margin:0;
+}
+
+.sign h1 {
+  color:#fff;
+ 
+  font-size:4em;
+  margin:0;
+  letter-spacing:-0.03em;
+}
+
+.sign p {
+  color:#fff;
+  margin:0;
+  font-size:18px;
+}
+
+.stolby {
+  position:absolute;
+  left:0;
+  top:0;
+}
+
+#v1, #v2, #v3, #v4 {
+     animation: 2s motion1 infinite linear;
+   position:absolute;
+    top:0;
+}
+
+#v1 {
+  left:180px; 
+  top:-178px;
+
+}
+
+#v2 {
+    left:-155px;
+  top:-100px;
+-moz-transform: scale(0.7) rotate(0deg);
+-webkit-transform: scale(0.7) rotate(0deg);
+-o-transform: scale(0.7) rotate(0deg);
+-ms-transform: scale(0.7) rotate(0deg);
+transform: scale(0.7) rotate(0deg);
+  animation: 2s motion2 infinite linear;
+}
+
+#v3 {
+  left:310px;
+  top:0px;
+  -moz-transform: scale(0.5) rotate(0deg);
+  -webkit-transform: scale(0.5) rotate(0deg);
+  -o-transform: scale(0.5) rotate(0deg);
+  -ms-transform: scale(0.5) rotate(0deg);
+  transform: scale(0.5) rotate(0deg);
+  animation: 2s motion3 infinite linear;
+  opacity:0.9;
+}
+
+#v4 {
+  left:184px;
+  top:250px;
+  -moz-transform: scale(0.3) rotate(0deg);
+  -webkit-transform: scale(0.3) rotate(0deg);
+  -o-transform: scale(0.3) rotate(0deg);
+  -ms-transform: scale(0.3) rotate(0deg);
+  transform: scale(0.3) rotate(0deg);
+  animation: 2s motion4 infinite linear;
+  opacity:0.7;
+}
+
+@keyframes motion1 {
+  from {}
+  
+
+  to {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+
+  }
+}
+
+@keyframes motion2 {
+  from {}
+  
+
+  to {
+  -moz-transform: scale(0.7) rotate(360deg);
+  -webkit-transform: scale(0.7) rotate(360deg);
+  -o-transform: scale(0.7) rotate(360deg);
+  -ms-transform: scale(0.7) rotate(360deg);
+  transform: scale(0.7) rotate(360deg);
+
+  }
+}
+
+@keyframes motion3 {
+  from {}
+  
+
+  to {
+  -moz-transform: scale(0.5) rotate(360deg);
+  -webkit-transform: scale(0.5) rotate(360deg);
+  -o-transform: scale(0.5) rotate(360deg);
+  -ms-transform: scale(0.5) rotate(360deg);
+  transform: scale(0.5) rotate(360deg);
+
+  }
+}
+
+@keyframes motion4 {
+  from {}
+  
+
+  to {
+  -moz-transform: scale(0.3) rotate(360deg);
+  -webkit-transform: scale(0.3) rotate(360deg);
+  -o-transform: scale(0.3) rotate(360deg);
+  -ms-transform: scale(0.3) rotate(360deg);
+  transform: scale(0.3) rotate(360deg);
+
+  }
+}

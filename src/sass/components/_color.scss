@@ -169,20 +169,20 @@ $teal: (
 );
 
 $green: (
-  "base":       #4CAF50,
-  "lighten-5":  #E8F5E9,
-  "lighten-4":  #C8E6C9,
-  "lighten-3":  #A5D6A7,
-  "lighten-2":  #81C784,
-  "lighten-1":  #66BB6A,
-  "darken-1":   #43A047,
-  "darken-2":   #388E3C,
-  "darken-3":   #2E7D32,
-  "darken-4":   #1B5E20,
-  "accent-1":    #B9F6CA,
-  "accent-2":    #69F0AE,
-  "accent-3":    #00E676,
-  "accent-4":    #00C853
+  "base":       #00AA28,
+  "lighten-5":  lighten(#00AA28,25%),
+  "lighten-4":  lighten(#00AA28,20%),
+  "lighten-3":  lighten(#00AA28,15%),
+  "lighten-2":  lighten(#00AA28,10%),
+  "lighten-1":  lighten(#00AA28,5%),
+  "darken-1":   darken(#00AA28,5%),
+  "darken-2":   darken(#00AA28,10%),
+  "darken-3":   darken(#00AA28,15%),
+  "darken-4":   darken(#00AA28,20%),
+  "accent-1":   saturate(#00AA28,5%),
+  "accent-2":   saturate(#00AA28,10%),
+  "accent-3":   desaturate(#00AA28,5%),
+  "accent-4":   desaturate(#00AA28,10%)
 );
 
 $light-green: (

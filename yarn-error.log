@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/7.4.0/bin/node /usr/local/bin/yarn add materialize-css --save
+  /usr/local/Cellar/node/7.4.0/bin/node /usr/local/bin/yarn add react-jsonschema-form --save-dev
 
 PATH: 
   /usr/local/bin:/usr/local/sbin:/Users/miguelramos/.rbenv/shims:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Applications/MAMP/bin/php/php5.6.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/Cellar/node/7.4.0/bin
@@ -68,9 +68,11 @@ npm manifest:
     },
     "dependencies": {
       "dotenv": "^2.0.0",
+      "materialize-css": "^0.100.2",
       "nodemon": "^1.12.1",
       "react": "^15.4.2",
       "react-dom": "^15.4.2",
+      "react-jsonschema-form": "^0.51.0",
       "react-redux": "^5.0.6",
       "react-router": "^4.2.0",
       "react-router-dom": "^4.2.2",
@@ -79,7 +81,7 @@ npm manifest:
       "redux-thunk": "^2.2.0"
     },
     "scripts": {
-      "start": "node scripts/start.js && \"npm run watch-css\"",
+      "start": "node scripts/start.js",
       "build": "node scripts/build.js",
       "test": "node scripts/test.js --env=jsdom",
       "css": "node-sass --include-path scss src/sass/style.scss public/css/style.css",
@@ -3489,6 +3491,10 @@ Lockfile:
     dependencies:
       duplexer "^0.1.1"
   
+  hammerjs@^2.0.8:
+    version "2.0.8"
+    resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  
   handlebars@^4.0.3:
     version "4.0.10"
     resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.10.tgz#3d30c718b09a3d96f23ea4cc1f403c4d3ba9ff4f"
@@ -4364,6 +4370,10 @@ Lockfile:
     dependencies:
       jest-cli "^18.1.0"
   
+  "jquery@^3.0.0 || ^2.1.4":
+    version "3.2.1"
+    resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
+  
   js-base64@^2.1.8, js-base64@^2.1.9:
     version "2.3.2"
     resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.3.2.tgz#a79a923666372b580f8e27f51845c6f7e8fbfbaf"
@@ -4881,6 +4891,13 @@ Lockfile:
   marked@^0.3.6:
     version "0.3.6"
     resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
+  
+  materialize-css@^0.100.2:
+    version "0.100.2"
+    resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-0.100.2.tgz#9ca32b24904c9a04491fc7d0a2e9402e7b1dae07"
+    dependencies:
+      hammerjs "^2.0.8"
+      jquery "^3.0.0 || ^2.1.4"
   
   math-expression-evaluator@^1.2.14:
     version "1.2.17"
@@ -6686,11 +6703,11 @@ Lockfile:
     dependencies:
       semver "^5.0.3"
   
-  "semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.3.0, semver@~5.3.0:
+  "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@~5.3.0:
     version "5.3.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
   
-  semver@^5.0.3, semver@~5.4.1:
+  semver@~5.4.1:
     version "5.4.1"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
   

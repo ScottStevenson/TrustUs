@@ -4,14 +4,17 @@ contract GenericTrust {
   address public trustor;
   address public beneficiary;
   bool public revocable;
+
   bool public deceasedPulseTriggerEnabled;
+  uint public deceasedPulseTriggerRate; // In seconds
+  uint public lastPulse;
+
   bool public deceasedConfirmerTriggerEnabled;
   uint public numRequiredDeathConfirmations;
   bool public fixedDateTriggerEnabled;
   uint public fixedDate; // All dates in unix time (seconds since epoch)
   bool public piggyBankTriggerEnabled;
   uint public piggyBankTriggerAmount;
-
 
   bool public trustorAlive = true;
   uint public deploymentDate;
@@ -27,6 +30,7 @@ contract GenericTrust {
     address _beneficiary,
     bool _revocable,
     bool _deceasedPulseTriggerEnabled,
+    uint _deceasedPulseTriggerRate,
     bool _deceasedConfirmerTriggerEnabled, // TODO: intake array of confirmers?
     uint _numRequiredDeathConfirmations,
     bool _fixedDateTriggerEnabled,
@@ -44,6 +48,11 @@ contract GenericTrust {
       require(_fixedDate > deploymentDate);
     }
 
+    if (deceasedPulseTriggerEnabled) {
+      require(_deceasedPulseTriggerRate > 0);
+      lastPulse = block.timestamp;
+    }
+
     trustor = _trustor;
     beneficiary = _beneficiary;
     revocable = _revocable;
@@ -58,46 +67,58 @@ contract GenericTrust {
 
   function deposit()
            only_trustor
+           trust_not_closed
            payable
            public {
 
     Deposit(msg.sender, msg.value);
   }
 
-  // TODO: Only supports fixed date trigger
+  // TODO: Only supports fixed date & pulse triggers
   function withdrawAll()
            only_beneficiary
+           trust_not_closed
            public {
 
-    if(fixedDateTriggerEnabled && block.timestamp > fixedDate)
+    // OR of conditions which permit beneficiary to withdraw
+    if((fixedDateTriggerEnabled && block.timestamp > fixedDate) ||
+    (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate)) {
+
       beneficiary.transfer(this.balance);
+      Withdraw(msg.sender, this.balance);
+      trustClosed = true;
 
-    Withdraw(msg.sender, this.balance);
-
-    trustClosed = true;
-
+    }
   }
 
-  // TODO
   function revoke()
            only_trustor
+           only_revocable
+           trust_not_closed
            public {
 
+    trustor.transfer(this.balance);
+    trustClosed = true;
+  }
+
+  function pulse()
+           only_trustor
+           trust_not_closed
+           trustor_not_deceased
+           public {
+
+    lastPulse = block.timestamp;
+
   }
 
   // TODO
-  function pulse(uint nextPulse) only_trustor {
+  function confirmDeceased() public {
 
   }
 
-  // TODO
-  function pulse() only_trustor {
-
-  }
-
-  // TODO
-  function confirmDeceased() {
-
+  // TODO implement confirmers functionality
+  function isTrustorDeceased() constant public returns (bool) {
+    return (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate);
   }
 
   // Fallback function for receiving payment
@@ -105,6 +126,7 @@ contract GenericTrust {
   function ()
           payable
           only_trustor
+          trust_not_closed
           public
   {
     Deposit(msg.sender, msg.value);
@@ -120,8 +142,23 @@ contract GenericTrust {
     _;
   }
 
+  modifier only_revocable() {
+    require(revocable);
+    _;
+  }
+
+  modifier trust_not_closed() {
+    require(!trustClosed);
+    _;
+  }
+
   modifier non_zero_address(address x) {
     require(x != 0);
+    _;
+  }
+
+  modifier trustor_not_deceased() {
+    require(!isTrustorDeceased());
     _;
   }
 }
