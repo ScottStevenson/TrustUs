@@ -70,11 +70,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-            <a href="#" className="pure-menu-heading pure-menu-link">Truffle Box</a>
-        </nav>
+        <div className="row">
+          <div className="container pa-m--m">
+            <a href="#"> <img src="img/logo.svg" /> </a>
+          </div>
+        </div>
 
-        <main className="container">
+        <main className="container publico">
           <div className="pure-g">
             <div className="pure-u-1-1">
               <h1>Good to Go!</h1>
