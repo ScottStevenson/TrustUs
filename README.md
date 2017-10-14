@@ -9,9 +9,8 @@ npm install -g ethereumjs-testrpc
 
 ```bash
 npm install
-truffle compile (can skip this step)
 run “testrpc” in separate tab/background
+truffle compile (can skip this step)
 truffle migrate
-npm install (just the first time)
 npm start
 ```
