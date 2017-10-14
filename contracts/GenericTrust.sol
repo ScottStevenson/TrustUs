@@ -58,6 +58,7 @@ contract GenericTrust {
 
   function deposit()
            only_trustor
+           trust_not_closed
            payable
            public {
 
@@ -67,6 +68,7 @@ contract GenericTrust {
   // TODO: Only supports fixed date trigger
   function withdrawAll()
            only_beneficiary
+           trust_not_closed
            public {
 
     if(fixedDateTriggerEnabled && block.timestamp > fixedDate)
@@ -81,22 +83,32 @@ contract GenericTrust {
   // TODO
   function revoke()
            only_trustor
+           only_revocable
+           trust_not_closed
+           public {
+
+           trustor.transfer(this.balance);
+           trustClosed = true;
+  }
+
+  // TODO
+  function pulse(uint nextPulse)
+           only_trustor
+           trust_not_closed
            public {
 
   }
 
   // TODO
-  function pulse(uint nextPulse) only_trustor {
+  function pulse()
+           only_trustor
+           trust_not_closed
+           public {
 
   }
 
   // TODO
-  function pulse() only_trustor {
-
-  }
-
-  // TODO
-  function confirmDeceased() {
+  function confirmDeceased() public {
 
   }
 
@@ -105,6 +117,7 @@ contract GenericTrust {
   function ()
           payable
           only_trustor
+          trust_not_closed
           public
   {
     Deposit(msg.sender, msg.value);
@@ -117,6 +130,16 @@ contract GenericTrust {
 
   modifier only_beneficiary() {
     require(msg.sender == beneficiary);
+    _;
+  }
+
+  modifier only_revocable() {
+    require(revocable);
+    _;
+  }
+
+  modifier trust_not_closed() {
+    require(!trustClosed);
     _;
   }
 
