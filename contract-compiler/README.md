@@ -1,40 +1,44 @@
-# browser-solc
+## Compiling Solidity in browser
 
-Solc is the solidity compiler.  It usually runs on the Ethereum node.  Browser-solidity is an example for Solc in the browser, but it's hard to pick apart just the solc library from the entire application.  This repo is a wrapper that helps you do that.  browser-solc is a browserified version of [solc-js](https://github.com/ethereum/solc-js).  
+1. Load the `BrowserSolc` library
 
-###[Demo app](https://s3.amazonaws.com/browser-solc.dappbench.com/index.html)
-
-You should use browser-solc if you:
-* Want to do `solc.compile()` in your Dapp
-* Don't want to worry about browserify the solc-js npm package
-
-
-##Usage:
 ```html
-<!-- Include this in your HTML page -->
-<script src="http://code.dappbench.com/browser-solc.min.js" type="text/javascript"></script>
-
+<script src="./browser-solc.min.js" type="text/javascript"></script>
 ```
+
+2. Pick your version of `solc-js`, and compile
 
 ```javascript
+window.onload = function() {
+  BrowserSolc.loadVersion("soljson-v0.4.17+commit.bdeb9e52.js", function(compiler) {
+    contract = "contract x { function g() {} }";
+    console.log(solcCompile(compiler, contract));
+  });
+};
 
-//Get a list of all possibile solc versions
-BrowserSolc.getVersions(function(soljsonSources, soljsonReleases) {
-  console.log(soljsonSources);
-  console.log(soljsonReleases);
-});
+/* compiles 'source' solidity code, using 'compiler' */
+function solcCompile(compiler, source) {
+  result = compiler.compile(source, 1); // 1 = optimize
+  return JSON.stringify(collectOutput(result));
+}
 
-//Load a specific compiler version
-BrowserSolc.loadVersion("soljson-v0.4.6+commit.2dabbdf0.js", function(compiler) {
-  source = 'contract x { function g() {} }';
-  optimize = 1;
-  result = compiler.compile(source, optimize);
-  console.log(result);
-});
+/* returns JSON containing 'bytecode', 'abi' for each resulting contract */
+function collectOutput(jsonObj) {
+  jsonObj = jsonObj['contracts'];
+  outputObj = [];
+
+  /* iterate over contracts; collect Bytecode, ABI  */
+  for(var key in jsonObj) {
+    if(jsonObj.hasOwnProperty(key)) {
+      // read bytecode, interface
+      outputObj.push({
+        contract: key,
+        bytecode: jsonObj[key].bytecode,
+        abi: jsonObj[key].interface
+      });
+    }
+  }
+
+  return outputObj;
+}
 ```
-
-
-##Development
-To build browser-solc.js, run `browserify src/index.js -g yo-yoify -o browser-solc.js; babel browser-solc.js --out-file browser-solc.js`
-
-Note: browser-solc does NOT implement the whole interface of solc-js.  
