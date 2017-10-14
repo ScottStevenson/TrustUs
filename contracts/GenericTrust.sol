@@ -57,6 +57,7 @@ contract GenericTrust {
     beneficiary = _beneficiary;
     revocable = _revocable;
     deceasedPulseTriggerEnabled = _deceasedPulseTriggerEnabled;
+    deceasedPulseTriggerRate = _deceasedPulseTriggerRate;
     deceasedConfirmerTriggerEnabled = _deceasedConfirmerTriggerEnabled;
     numRequiredDeathConfirmations = _numRequiredDeathConfirmations;
     fixedDateTriggerEnabled = _fixedDateTriggerEnabled;
