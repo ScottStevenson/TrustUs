@@ -23,25 +23,29 @@ import { submit, nextStep, prevStep, onChange} from '../actions'
 
 function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, handleOnChange }) {
   let steps = form.steps.map((step, i, arr) => {
-    let button,
+    let submitButton,
         submitFunc
-    if(i === arr.length - 1) {
+    if(i === arr.length - 1 && step.secondaryFormShow === true) {
+      submitButton = <button type="submit">Submit</button>
       submitFunc = submit
     } else {
+      submitButton = <button type="submit">Next</button>
       submitFunc = () => handleNextStep(step, i)
     }
 
     if(step.secondaryFormShow === true) {
+      let secondaryFormName = step.formData[step.schema.name]
+
       return <Form
-        schema={step.formData[step.name].schema}
+        schema={step.schema.secondaryForms[secondaryFormName].schema}
         uiSchema={step.uiSchema}
         formData={step.formData}
         onSubmit={submitFunc}
         onChange={() => console.log(arguments)}
         >
         <div>
-          <button type="submit">Next</button>
-          <button type="button" onClick={handlePrevStep}>Back</button>
+          {submitButton}
+          <button type="button" onClick={() => handlePrevStep(step, i)}>Back</button>
         </div>
       </Form>
     }
@@ -54,8 +58,8 @@ function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, ha
       onChange={result => handleOnChange(i, step.name, result.formData, false)}
       >
       <div>
-        <button type="submit">Next</button>
-        <button type="button">Back</button>
+        {submitButton}
+        <button type="button" onClick={() => handlePrevStep(step, i)}>Back</button>
       </div>
     </Form>
   })
@@ -68,8 +72,8 @@ export default connect(
   ({ form }) => ({ form }),
   dispatch => ({
     handleSubmit: () => dispatch(submit),
-    handleNextStep: () => dispatch(nextStep),
-    handlePrevStep: () => dispatch(prevStep),
+    handleNextStep: (step, i) => dispatch(nextStep(step, i)),
+    handlePrevStep: (step, i) => dispatch(prevStep(step, i)),
     handleOnChange: (index, name, data, secondary) => dispatch(onChange(index, name, data, secondary))
   })
 )(FormGenerator)

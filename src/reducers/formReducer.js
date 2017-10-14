@@ -24,11 +24,11 @@ const initialState = {
       }
     },
     {
+      secondaryForm: true,
+      secondaryFormShow: false,
       schema: {
         title: "Trigger",
         type: "object",
-        secondaryForm: true,
-        secondaryFormShow: false,
         name: "trigger",
         required: ["trigger"],
         properties: {
@@ -51,22 +51,27 @@ const initialState = {
               required: ["fixedDate"],
               properties: {
                 "fixedDate": {
-                  "type": "date",
+                  "type": "string",
                   "title": "Date of release"
                 }
               },
+              uiSchema: {
+                "Fixed Date": {
+                  "ui:widget": "date"
+                }
+              }
             },
             formData: {}
           },
           'Death': {
             schema: {
-              title: "Fixed Date",
+              title: "Death",
               type: "object",
               required: ["fixedDate"],
               properties: {
-                "fixedDate": {
-                  "type": "date",
-                  "title": "Date of release"
+                "pulse": {
+                  "type": "integer",
+                  "title": "Number of days between pulse"
                 }
               },
             },
@@ -74,13 +79,13 @@ const initialState = {
           },
           'Price of Ether': {
             schema: {
-              title: "Fixed Date",
+              title: "Price of Ether",
               type: "object",
-              required: ["fixedDate"],
+              required: ["Price of Ether"],
               properties: {
-                "fixedDate": {
-                  "type": "date",
-                  "title": "Date of release"
+                "Price of Ether": {
+                  "type": "integer",
+                  "title": "USD value of Ether"
                 }
               },
             },
@@ -88,13 +93,13 @@ const initialState = {
           },
           'Target Ether Amount': {
             schema: {
-              title: "Fixed Date",
+              title: "Amount of Ether",
               type: "object",
-              required: ["fixedDate"],
+              required: ["Amount of Ether"],
               properties: {
-                "fixedDate": {
-                  "type": "date",
-                  "title": "Date of release"
+                "Amount of Ether": {
+                  "type": "integer",
+                  "title": "Amount of Ether required before release"
                 }
               },
             },
@@ -117,12 +122,10 @@ const initialState = {
 }
 
 export default function reducer(state = initialState, action = {}){
+  let obj = { ...state }
   switch(action.type) {
 
     case 'UPDATE_FORM_DATA':
-      let obj = {
-        ...state,
-      }
 
       if(action.secondary) {
         obj.steps[action.index][name].formData = action.data
@@ -131,7 +134,10 @@ export default function reducer(state = initialState, action = {}){
       }
 
       return obj
-      break;
+    case 'TOGGLE_SECONDARY_FORM':
+      obj.steps[action.index].secondaryFormShow = !obj.steps[action.index].secondaryFormShow
+      return obj
+
     default:
       return state
   }

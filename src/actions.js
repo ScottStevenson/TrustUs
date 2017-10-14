@@ -21,26 +21,36 @@ export function onChange(index, name, data, secondary){
   }
 }
 
+function toggleSecondaryForm(index, name){
+  return {
+    type: 'TOGGLE_SECONDARY_FORM',
+    index
+  }
+}
 
 export function nextStep(step, i) {
   return dispatch => {
     if(step.secondaryForm){
       // update secondary formData
+      dispatch(toggleSecondaryForm(i, step.name))
     } else {
       // update normal
+      dispatch(incrementStep(i + 1))
     }
-
-    dispatch(incrementStep(i + 1))
   }
   //increment state of form
 }
 
-export function prevStep(i){
+export function prevStep(step, i){
 
-  //decrement state of form
-  return {
-    type: 'PREV_STEP',
-    currentStep: i - 1
+  return dispatch => {
+    if(step.secondaryForm){
+      // update secondary formData
+      dispatch(toggleSecondaryForm(i, step.name))
+    } else {
+      // update normal
+      dispatch(incrementStep(i - 1))
+    }
   }
 }
 
