@@ -1,4 +1,4 @@
-pragma solidity ^0.4.10;
+pragma solidity ^0.4.15;
 
 contract GenericTrust {
   address public trustor;
@@ -39,8 +39,8 @@ contract GenericTrust {
     uint _piggyBankTriggerAmount
   )
     payable
-    non_zero_address(trustor)
-    non_zero_address(beneficiary)
+    non_zero_address(_trustor)
+    non_zero_address(_beneficiary)
   {
     deploymentDate = block.timestamp;
 
@@ -114,6 +114,10 @@ contract GenericTrust {
   // TODO
   function confirmDeceased() public {
 
+  }
+
+  function isClosed() constant public returns (bool) {
+    return trustClosed;
   }
 
   // TODO implement confirmers functionality
