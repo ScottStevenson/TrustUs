@@ -2,22 +2,29 @@ pragma solidity ^0.4.10;
 
 contract GenericTrust {
   address public trustor;
-  address public trustee;
+  address public beneficiary;
   bool public revocable;
   bool public deceasedPulseTriggerEnabled;
   bool public deceasedConfirmerTriggerEnabled;
   uint public numRequiredDeathConfirmations;
   bool public fixedDateTriggerEnabled;
-  uint public fixedDate;
+  uint public fixedDate; // All dates in unix time (seconds since epoch)
   bool public piggyBankTriggerEnabled;
   uint public piggyBankTriggerAmount;
 
+
   bool public trustorAlive = true;
+  uint public deploymentDate;
+  bool public trustClosed = false;
   // TODO: Add deceased confirmer array
+
+  event Deposit(address fromAddress, uint256 ethAmount);
+  event Withdraw(address toAddress, uint256 ethAmount);
+  event Pulse();
 
   function GenericTrust(
     address _trustor,
-    address _trustee,
+    address _beneficiary,
     bool _revocable,
     bool _deceasedPulseTriggerEnabled,
     bool _deceasedConfirmerTriggerEnabled, // TODO: intake array of confirmers?
@@ -27,11 +34,18 @@ contract GenericTrust {
     bool _piggyBankTriggerEnabled,
     uint _piggyBankTriggerAmount
   )
+    payable
     non_zero_address(trustor)
-    non_zero_address(trustee)
+    non_zero_address(beneficiary)
   {
+    deploymentDate = block.timestamp;
+
+    if (_fixedDateTriggerEnabled) {
+      require(_fixedDate > deploymentDate);
+    }
+
     trustor = _trustor;
-    trustee = _trustee;
+    beneficiary = _beneficiary;
     revocable = _revocable;
     deceasedPulseTriggerEnabled = _deceasedPulseTriggerEnabled;
     deceasedConfirmerTriggerEnabled = _deceasedConfirmerTriggerEnabled;
@@ -42,25 +56,58 @@ contract GenericTrust {
     piggyBankTriggerAmount = _piggyBankTriggerAmount;
   }
 
-  function deposit() only_trustor {
+  function deposit()
+           only_trustor
+           payable
+           public {
+
+    Deposit(msg.sender, msg.value);
+  }
+
+  // TODO: Only supports fixed date trigger
+  function withdrawAll()
+           only_beneficiary
+           public {
+
+    if(fixedDateTriggerEnabled && block.timestamp > fixedDate)
+      beneficiary.transfer(this.balance);
+
+    Withdraw(msg.sender, this.balance);
+
+    trustClosed = true;
 
   }
 
-  function withdraw() only_trustee {
+  // TODO
+  function revoke()
+           only_trustor
+           public {
 
   }
 
+  // TODO
+  function pulse(uint nextPulse) only_trustor {
+
+  }
+
+  // TODO
   function pulse() only_trustor {
 
   }
 
+  // TODO
   function confirmDeceased() {
 
   }
 
   // Fallback function for receiving payment
-  function () public payable {
-
+  // Only accept from one trustor for now
+  function ()
+          payable
+          only_trustor
+          public
+  {
+    Deposit(msg.sender, msg.value);
   }
 
   modifier only_trustor() {
@@ -68,8 +115,8 @@ contract GenericTrust {
     _;
   }
 
-  modifier only_trustee() {
-    require(msg.sender == trustee);
+  modifier only_beneficiary() {
+    require(msg.sender == beneficiary);
     _;
   }
 
