@@ -1,8 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+import React from "react";
+import ReactDOM from "react-dom";
+import Router from "./router";
+import configureStore from "./store";
+import "./index.css";
+
+const store = configureStore();
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+    <Router store={store} />,
+    document.getElementById( "root" )
 );
