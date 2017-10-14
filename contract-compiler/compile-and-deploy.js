@@ -1,5 +1,5 @@
 window.onload = function() {
-  contract = "contract x { function g() {} }";
+  /* contract.txt is read into contract */
 
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
@@ -54,10 +54,22 @@ function deploy(_source, _abi) {
     console.log("account", account);
 
     var contract = web3.eth.contract(_abi)
-    contract.new({
+    contract.new(
+      '0x413c5d52ad3c7c86004e960c3eb2b01706ea4140',
+      '0x1da1bc9a5ec7355670cce76ae26b120f5456b99d',
+      true,
+      true,
+      61,
+      false,
+      0,
+      false,
+      0,
+      false,
+      0,
+    {
       from: account,
       data: _source,
-      gas: '450000'
+      gas: '2000000'
     }, (err, contract) => {
       console.log(contract);
       if (typeof contract.address !== 'undefined') {
