@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import getWeb3 from './utils/getWeb3'
 import FormGenerator from './components/FormGenerator'
-import { connect } from 'react-redux'
-import { setWeb3 } from './actions'
+
 
 import './css/oswald.css'
 import './css/open-sans.css'
@@ -10,63 +8,6 @@ import './css/pure-min.css'
 import './App.css'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      storageValue: 0,
-      web3: null
-    }
-  }
-
-  componentWillMount() {
-    // Get network provider and web3 instance.
-    // See utils/getWeb3 for more info.
-
-    getWeb3
-    .then(results => {
-      console.log('web3 is hapening')
-      this.props.handleSetWeb3(results.web3)
-
-      // Instantiate contract once web3 provided.
-      //this.instantiateContract()
-    })
-    // .catch(() => {
-    //   console.log('Error finding web3.')
-    // })
-  }
-
-  instantiateContract() {
-    /*
-     * SMART CONTRACT EXAMPLE
-     *
-     * Normally these functions would be called in the context of a
-     * state management library, but for convenience I've placed them here.
-     */
-
-    const contract = require('truffle-contract')
-    const simpleStorage = contract(SimpleStorageContract)
-    simpleStorage.setProvider(this.state.web3.currentProvider)
-
-    // Declaring this for later so we can chain functions on SimpleStorage.
-    var simpleStorageInstance
-
-    // Get accounts.
-    this.state.web3.eth.getAccounts((error, accounts) => {
-      simpleStorage.deployed().then((instance) => {
-        simpleStorageInstance = instance
-
-        // Stores a given value, 5 by default.
-        return simpleStorageInstance.set(5, {from: accounts[0]})
-      }).then((result) => {
-        // Get the value from the contract to prove it worked.
-        return simpleStorageInstance.get.call(accounts[0])
-      }).then((result) => {
-        // Update state with the result.
-        return this.setState({ storageValue: result.c[0] })
-      })
-    })
-  }
 
   render() {
     //const { form } = this.props
@@ -74,8 +15,8 @@ class App extends Component {
       <div className="row app">
         <div className="row container pa-m--s">
           <div className="col m5">
-            <a href="#"> 
-              <img src="img/logo.svg" alt="" /> 
+            <a href="#">
+              <img src="img/logo.svg" alt="" />
             </a>
           </div>
           <div className="col m4 right">
@@ -138,7 +79,7 @@ class App extends Component {
                 <path fill="#8C330C" d="M21.6,90.611c0,0-16.639,5.794-18.919,11.312c-1.703,4.123,17.86-2.117,17.86-2.117
                   s-0.86-1.852-0.529-4.763C20.344,92.133,21.6,90.611,21.6,90.611"/>
               </g>
-              
+
               <g opacity="0.95">
                 <polygon points="505.428,407.268 484.645,407.268 490.115,202.164 499.959,202.164  "/>
                 <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="505.4741" y1="312.0166" x2="482.8659" y2="312.7462">
@@ -180,8 +121,8 @@ class App extends Component {
               </g>
               </svg>
                 </div>
-                
-               
+
+
                <div id="v1">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="386.318px" height="383.263px" viewBox="0 0 386.318 383.263" enableBackground="new 0 0 386.318 383.263"
@@ -199,8 +140,8 @@ class App extends Component {
               </g>
               </svg>
                 </div>
-                
-               
+
+
                 <div id="v2">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="386.318px" height="383.263px" viewBox="0 0 386.318 383.263" enableBackground="new 0 0 386.318 383.263"
@@ -218,8 +159,8 @@ class App extends Component {
               </g>
               </svg>
                 </div>
-                
-                
+
+
                 <div id="v3">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="386.318px" height="383.263px" viewBox="0 0 386.318 383.263" enableBackground="new 0 0 386.318 383.263"
@@ -237,20 +178,18 @@ class App extends Component {
               </g>
               </svg>
                 </div>
-                
-              
-                
-                
+
+
+
+
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
     );
   }
 }
 
-export default connect(()=>{ return {} }, (dispatch)=>{ return {
-  handleSetWeb3: (web3) => dispatch(setWeb3(web3))
-}})(App)
+export default App

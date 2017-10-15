@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { submit } from '../actions'
 
-const TrustSummary = ({ contractArguments}) => {
-  console.log(contractArguments)
+const TrustSummary = ({ contractArguments, web3, deploy}) => {
   let triggerType = contractArguments.trigger.value
   let beneficaries = contractArguments.beneficaries.value.map(bene =>
     <div>
@@ -16,7 +16,7 @@ const TrustSummary = ({ contractArguments}) => {
         	<div className="container">
         		<div className="row">
         		  <div className="col m4">
-        		    <img src="img/logo-white.svg" alt="" /> 
+        		    <img src="img/logo-white.svg" alt="" />
         		  </div>
         		  <div className="col m4 right">
         		    <div className="input-field search">
@@ -42,15 +42,15 @@ const TrustSummary = ({ contractArguments}) => {
         					<p className="white-text">WARNING: Upon deployment this contract is irreversible. Please take the precaution of proof reading your doc. Thanks</p>
         				</div>
         				<div className="row mt-m--s">
-        					<button className="btn-large btn-flush secondary ">DEPLOY </button>
+        					<button className="btn-large btn-flush secondary " onClick={() => deploy(web3, contractArguments)}>DEPLOY </button>
         				</div>
         			</div>
         		</div>
         	</div>
-        	
+
        	</div>
 
   )
 }
 
-export default connect(({ contractArguments }) => ({ contractArguments }))(TrustSummary)
+export default connect(({ contractArguments, web3 }) => ({ contractArguments, web3 }), dispatch => ({ deploy: (web3, form) => dispatch(submit(web3,form))}))(TrustSummary)

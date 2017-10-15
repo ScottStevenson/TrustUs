@@ -216,23 +216,45 @@ function collectOutput(jsonObj) {
 
 function deploy(web3, _source, _abi, form) {
   console.log("deploy()", _source, JSON.stringify(_abi));
+  console.log(form)
   web3.eth.getAccounts((err, accounts) => {
     let account = accounts[0];
-    console.log("account", account);
+    let revocable = form.typeOfTrust.value === 'revocable' ? true : false ;
+    let pulse = false;
+    let fixedDateEnabled = false
+    let fixedDate = 0
+    let piggyBankEnabled = false
+    let piggyBankTriggerAmount = 0
+    let pulseRate = 0
+
+
+    switch(form.trigger) {
+      case 'Death':
+        pulse = true
+        pulseRate = form.trigger.details.pulse
+      case 'Fixed Date':
+        fixedDateEnabled = true
+        fixedDate = form.trigger.details.fixedDate
+      case 'Target Ether Amount':
+        piggyBankEnabled = true
+        piggyBankTriggerAmount = form.trigger.details['Target Ether Amount']
+    }
+
+
 
     var contract = web3.eth.contract(_abi)
     contract.new(
-      '0x413c5d52ad3c7c86004e960c3eb2b01706ea4140',
-      '0x1da1bc9a5ec7355670cce76ae26b120f5456b99d',
-      true,
-      true,
-      61,
+      account,
+      form.beneficaries[0],
+      revocable,
+      pulse,
+      pulseRate,
       false,
       0,
-      false,
-      0,
-      false,
-      0,
+      fixedDateEnabled,
+      fixedDate,
+      piggyBankEnabled,
+      piggyBankTriggerAmount,
     {
       from: account,
       data: _source,
@@ -252,8 +274,9 @@ export function deployContract(web3, form){
     /* Compile */
     let output = solcCompile(compiler, contract);
     console.log("output", output);
+    console.log("web3", web3)
 
     /* Deploy */
-    deploy(web3, output[0]['bytecode'], JSON.parse(output[0]['abi']), fform);
+    deploy(web3, output[0]['bytecode'], JSON.parse(output[0]['abi']), form);
   });
 }

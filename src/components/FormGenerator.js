@@ -62,6 +62,7 @@ export default connect(
   ({ form, web3 }) => ({ form, web3 }),
   dispatch => ({
     handleSubmit: (web3, form, history) => {
+      console.log(web3)
       let data = form.steps.reduce((acc, step) => {
         let obj = {
           ...acc,

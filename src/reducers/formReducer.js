@@ -99,7 +99,7 @@ const initialState = {
               title: "Amount of Ether",
               type: "object",
               properties: {
-                "Amount of Ether": {
+                "Target Ether Amount": {
                   "type": "integer",
                   "title": "Amount of Ether required before release"
                 }
