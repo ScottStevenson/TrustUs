@@ -10,6 +10,10 @@ function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, ha
     let submitButton,
         submitFunc
 
+    if(i !== form.currentStep){
+      return null
+    }
+
     if(i === arr.length - 1 && step.secondaryFormShow === true || step.secondaryForm === false) {
       submitButton = <button type="submit">Review Contract</button>
       submitFunc = () => handleSubmit(web3, form, history)

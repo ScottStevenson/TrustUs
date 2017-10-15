@@ -9600,3 +9600,9 @@ legend#root_beneficaries__title {
   font-size: 1.8em;
   font-weight: 600;
   color: #212121; }
+
+.height {
+  height: 100vh; }
+
+.height-300 {
+  height: 300px; }

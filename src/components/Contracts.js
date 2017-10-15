@@ -57,7 +57,7 @@ export default () => {
                 </div>
               </div>
               <div className="row">
-                <a href="" className="btn-large btn-flush grey-text text-darken-3">Start Building</a>
+                <a href="/trust" className="btn-large btn-flush grey-text text-darken-3">Start Building</a>
               </div>
             </div>  
           </div>
