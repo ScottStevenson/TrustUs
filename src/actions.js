@@ -1,3 +1,5 @@
+import { deployContract } from './contract-compiler/compile-and-deploy'
+
 export function defaultAction(){
   return {
     type: 'whoops'
@@ -54,9 +56,16 @@ export function prevStep(step, i){
   }
 }
 
-export function submit(form){
+export function submit(web3, form){
   return dispatch => {
     console.log('submitted yo', form)
-    
+    deployContract(web3)
+  }
+}
+
+export function setWeb3(web3){
+  return {
+    type: "SET_WEB3",
+    web3
   }
 }

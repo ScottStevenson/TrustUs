@@ -1,6 +1,7 @@
 const initialState = {
   steps: [
     {
+      name: 'typeOfTrust',
       schema: {
         title: "Type of Trust",
         type: "object",
@@ -117,6 +118,7 @@ const initialState = {
       }
     },
     {
+      name: 'beneficaries',
       secondaryForm: false,
       schema: {
         title: "Beneficaries",
