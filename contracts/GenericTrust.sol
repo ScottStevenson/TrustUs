@@ -11,12 +11,13 @@ contract GenericTrust {
 
   bool public deceasedConfirmerTriggerEnabled;
   uint public numRequiredDeathConfirmations;
+
   bool public fixedDateTriggerEnabled;
   uint public fixedDate; // All dates in unix time (seconds since epoch)
+
   bool public piggyBankTriggerEnabled;
   uint public piggyBankTriggerAmount;
 
-  bool public trustorAlive = true;
   uint public deploymentDate;
   bool public trustClosed = false;
   // TODO: Add deceased confirmer array
@@ -110,6 +111,7 @@ contract GenericTrust {
            public {
 
     lastPulse = block.timestamp;
+    Pulse();
 
   }
 
