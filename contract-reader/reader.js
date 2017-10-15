@@ -21,6 +21,8 @@ window.onload = function() {
   readContract(address);
 }
 
-function readContract(_address) {
-  
+// Main program entry point
+function readContract(address) {
+  var contract = web3.eth.contract(address, abi);
+  console.log(contract);
 }
