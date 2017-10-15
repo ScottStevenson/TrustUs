@@ -79,14 +79,16 @@ class App extends Component {
             </a>
           </div>
           <div className="col m4 right">
-            <a href="" className="btn btn-round red"> </a>
+            
           </div>
         </div>
         <div className="row pa-m--s mt-l--s">
           <div className="container pa-m--s">
             <div className="col m6">
-              <h1 className="publico text-xl">Hello</h1>
+              <h1 className="publico text-xl">Hello...</h1>
               <h2 className="publico">Lets Build a Smart Contract!</h2>
+              <p>Create a smart contract with no solidity experience, embrace the power of the blockchain today</p>
+              <a href="/contracts" className="btn-large amber darken-2 mt-m--s">Get Started</a>
             </div>
             <div className="col m6">
               <div className="windmill-container">
@@ -237,12 +239,13 @@ class App extends Component {
               </g>
               </svg>
                 </div>
-                
-              
-                
-                
               </div>
             </div>
+          </div>
+        </div>
+        <div className="row green pa-l--s height-300">
+          <div className="valign-wrapper">
+
           </div>
         </div>
       </div>
