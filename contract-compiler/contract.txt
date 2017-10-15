@@ -1,3 +1,4 @@
+let contract = `
 pragma solidity ^0.4.15;
 
 contract GenericTrust {
@@ -57,7 +58,6 @@ contract GenericTrust {
     beneficiary = _beneficiary;
     revocable = _revocable;
     deceasedPulseTriggerEnabled = _deceasedPulseTriggerEnabled;
-    deceasedPulseTriggerRate = _deceasedPulseTriggerRate;
     deceasedConfirmerTriggerEnabled = _deceasedConfirmerTriggerEnabled;
     numRequiredDeathConfirmations = _numRequiredDeathConfirmations;
     fixedDateTriggerEnabled = _fixedDateTriggerEnabled;
@@ -166,4 +166,4 @@ contract GenericTrust {
     require(!isTrustorDeceased());
     _;
   }
-}
+}`;
