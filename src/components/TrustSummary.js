@@ -32,7 +32,7 @@ const TrustSummary = ({ contractArguments, web3, deploy}) => {
 	    				</p>
               <div className="row">
               <p>{beneficaries}</p>
-              <h3><span className="yellow">{triggerType}</span></h3>
+              <h3>Funds will be released on<span className="yellow"> {triggerType}</span></h3>
               </div>
 	    				<h3 className="tw-ultrabold mt-m--s">ARTICLE I </h3>
 	    				<h4 className="tw-ultrabold mt-m--s">CONVEYANCE OF PROPERTY TO THE TRUSTEE </h4>
