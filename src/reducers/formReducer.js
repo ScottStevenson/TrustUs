@@ -1,6 +1,7 @@
 const initialState = {
   steps: [
     {
+      name: 'typeOfTrust',
       schema: {
         title: "Type of Trust",
         type: "object",
@@ -13,7 +14,7 @@ const initialState = {
               'Revocable'
             ],
             "enumNames":[
-              'Irrevocable Trust', 
+              'Irrevocable Trust',
               'Revocable Trust'
             ]
           }
@@ -121,6 +122,7 @@ const initialState = {
       }
     },
     {
+      name: 'beneficaries',
       secondaryForm: false,
       schema: {
         title: "Beneficiary",
@@ -167,7 +169,16 @@ export default function reducer(state = initialState, action = {}){
       obj.steps[action.index].secondaryFormShow = !obj.steps[action.index].secondaryFormShow
       return obj
 
+    case 'INCREMENT_STEP':
+      return {
+        ...state,
+        currentStep: action.currentStep
+      }
+
     default:
       return state
+
+
+
   }
 }

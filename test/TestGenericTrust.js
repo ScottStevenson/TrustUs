@@ -29,4 +29,19 @@ contract('TestGenericTrust', function(accounts) {
       }
     });
   });
+
+  it("should not allow withdrawal if pulse time hasn't run out", function() {
+    return GenericTrust.new(
+      accounts[0], accounts[1], false, true, 10000, false, 1, false, 1, false, 1).then(function(_instance) {
+        _instance.deposit(100).then(function(_instance) {
+          return _instance.withdrawAll()
+        }).then(function(result) {
+          assert(result.valueOf() !== true, "operation succeeded - should fail");
+        }).catch(function(err) {
+          if(err.name == "AssertionError") {
+            throw err;
+          }
+        });
+      });
+  });
 });

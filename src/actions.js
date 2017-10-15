@@ -1,3 +1,5 @@
+import { deployContract } from './contract-compiler/compile-and-deploy'
+
 export function defaultAction(){
   return {
     type: 'whoops'
@@ -7,6 +9,13 @@ export function defaultAction(){
 function incrementStep(num){
   return {
     type: 'INCREMENT_STEP',
+    currentStep: num
+  }
+}
+
+function decrementStep(num){
+  return {
+    type: 'DECREMENT_STEP',
     currentStep: num
   }
 }
@@ -49,14 +58,28 @@ export function prevStep(step, i){
       dispatch(toggleSecondaryForm(i, step.name))
     } else {
       // update normal
-      dispatch(incrementStep(i - 1))
+      dispatch(decrementStep(i - 1))
     }
   }
 }
 
-export function submit(form){
+export function submit(web3, form){
   return dispatch => {
     console.log('submitted yo', form)
-    
+    deployContract(web3, form)
+  }
+}
+
+export function reviewContract(form){
+  return {
+    type: "REVIEW_CONTRACT",
+    form
+  }
+}
+
+export function setWeb3(web3){
+  return {
+    type: "SET_WEB3",
+    web3
   }
 }

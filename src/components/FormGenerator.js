@@ -4,13 +4,15 @@ import { connect } from 'react-redux'
 import { submit, nextStep, prevStep, onChange} from '../actions'
 
 
-function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, handleOnChange }) {
+function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, handleOnChange, web3 }) {
+  console.log(web3)
   let steps = form.steps.map((step, i, arr) => {
     let submitButton,
         submitFunc
+
     if(i === arr.length - 1 && step.secondaryFormShow === true || step.secondaryForm === false) {
-      submitButton = <button type="submit">Submit</button>
-      submitFunc = () => handleSubmit(form)
+      submitButton = <button type="submit">Review Contract</button>
+      submitFunc = () => handleSubmit(web3, form)
     } else {
       submitButton = <button type="submit">Next</button>
       submitFunc = () => handleNextStep(step, i)
@@ -57,24 +59,28 @@ function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, ha
 }
 
 export default connect(
-  ({ form }) => ({ form }),
+  ({ form, web3 }) => ({ form, web3 }),
   dispatch => ({
-    handleSubmit: (form) => {
-      let data = form.reduce((acc, step) => {
+    handleSubmit: (web3, form) => {
+      let data = form.steps.reduce((acc, step) => {
         let obj = {
           ...acc,
           [step.name]: {
-            value: step.formData
+            value: step.formData[step.name],
           }
         }
 
-        // if(step.secondaryForm){
-        //   step.schema.secondaryForm[]
-        // }
+        if(step.secondaryForm){
+          let selected = step.formData[step.name]
+          //step.schema.secondaryForm[]
+          console.log(step)
+          obj[step.name].details = step.schema.secondaryForms[selected].formData
+        }
 
         return obj
       }, {})
-      dispatch(submit(data))
+      console.log(web3)
+      dispatch(submit(web3, data))
 
     },
     handleNextStep: (step, i) => dispatch(nextStep(step, i)),

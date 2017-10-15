@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import getWeb3 from './utils/getWeb3'
 import FormGenerator from './components/FormGenerator'
+import { connect } from 'react-redux'
+import { setWeb3 } from './actions'
 
 import './css/oswald.css'
 import './css/open-sans.css'
@@ -24,16 +25,15 @@ class App extends Component {
 
     getWeb3
     .then(results => {
-      this.setState({
-        web3: results.web3
-      })
+      console.log('web3 is hapening')
+      this.props.handleSetWeb3(results.web3)
 
       // Instantiate contract once web3 provided.
-      this.instantiateContract()
+      //this.instantiateContract()
     })
-    .catch(() => {
-      console.log('Error finding web3.')
-    })
+    // .catch(() => {
+    //   console.log('Error finding web3.')
+    // })
   }
 
   instantiateContract() {
@@ -321,4 +321,6 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect(()=>{ return {} }, (dispatch)=>{ return {
+  handleSetWeb3: (web3) => dispatch(setWeb3(web3))
+}})(App)
