@@ -1,18 +1,18 @@
 import React from 'react'
 import Form from "react-jsonschema-form"
 import { connect } from 'react-redux'
-import { submit, nextStep, prevStep, onChange} from '../actions'
+import { submit, nextStep, prevStep, onChange, reviewContract} from '../actions'
+import { withRouter } from 'react-router-dom'
 
 
-function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, handleOnChange, web3 }) {
-  console.log(web3)
+function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, handleOnChange, web3, history }) {
   let steps = form.steps.map((step, i, arr) => {
     let submitButton,
         submitFunc
 
     if(i === arr.length - 1 && step.secondaryFormShow === true || step.secondaryForm === false) {
       submitButton = <button type="submit">Review Contract</button>
-      submitFunc = () => handleSubmit(web3, form)
+      submitFunc = () => handleSubmit(web3, form, history)
     } else {
       submitButton = <button type="submit">Next</button>
       submitFunc = () => handleNextStep(step, i)
@@ -61,7 +61,7 @@ function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, ha
 export default connect(
   ({ form, web3 }) => ({ form, web3 }),
   dispatch => ({
-    handleSubmit: (web3, form) => {
+    handleSubmit: (web3, form, history) => {
       let data = form.steps.reduce((acc, step) => {
         let obj = {
           ...acc,
@@ -79,12 +79,12 @@ export default connect(
 
         return obj
       }, {})
-      console.log(web3)
-      dispatch(submit(web3, data))
 
+      dispatch(reviewContract(data))
+      history.push('/contract-summary')
     },
     handleNextStep: (step, i) => dispatch(nextStep(step, i)),
     handlePrevStep: (step, i) => dispatch(prevStep(step, i)),
     handleOnChange: (index, name, data, secondary) => dispatch(onChange(index, name, data, secondary))
   })
-)(FormGenerator)
+)(withRouter(FormGenerator))
