@@ -7,6 +7,7 @@
 @import "components/sizers";
 @import "components/aligners";
 @import "components/typography";
+@import "components/glyphicon";
 
 .windmill-container {
   position:relative;
@@ -326,4 +327,13 @@ transform: scale(0.7) rotate(0deg);
 			@extend .btn-flat;
 		}
 	}
+}
+.btn{
+	i.glyphicon{
+		    vertical-align: top;
+		font-size:20px;
+	}
+}
+.array-item-remove{
+	flex: none !important;
 }
