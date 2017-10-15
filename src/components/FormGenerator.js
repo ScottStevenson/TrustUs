@@ -81,7 +81,7 @@ export default connect(
       }, {})
 
       dispatch(reviewContract(data))
-      history.push('/contract-summary')
+      history.push('/summary')
     },
     handleNextStep: (step, i) => dispatch(nextStep(step, i)),
     handlePrevStep: (step, i) => dispatch(prevStep(step, i)),
