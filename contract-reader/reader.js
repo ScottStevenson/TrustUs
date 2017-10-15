@@ -33,11 +33,8 @@ function readContract(address) {
     myContract = contract.at(address);
     console.log(myContract);
 
-    /* transaction call format */
-    myContract.pulse({
-      gas: 99000
-    }, (err, result) => {
-      console.log("pulse()", err, result);
+    document.getElementById('btnPulse').addEventListener('click', function(){
+      pulse(web3, myContract);
     });
 
     /* getbalance */
@@ -64,5 +61,14 @@ function readContract(address) {
       console.log('Is Trustor Deceased: ' + result);
       document.getElementById('deceased').innerHTML = result;
     });
+  });
+}
+
+function pulse(web3, contract) {
+  /* transaction call format */
+  contract.pulse({
+    gas: 99000
+  }, (err, result) => {
+    console.log("pulse()", err, result);
   });
 }
