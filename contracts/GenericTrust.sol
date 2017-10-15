@@ -83,7 +83,8 @@ contract GenericTrust {
 
     // OR of conditions which permit beneficiary to withdraw
     if((fixedDateTriggerEnabled && block.timestamp > fixedDate) ||
-    (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate)) {
+    (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate) ||
+    (piggyBankTriggerEnabled && this.balance >= piggyBankTriggerAmount)) {
 
       beneficiary.transfer(this.balance);
       Withdraw(msg.sender, this.balance);
