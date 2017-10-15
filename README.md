@@ -14,3 +14,9 @@ truffle compile (can skip this step)
 truffle migrate
 npm start
 ```
+
+## Launching the Contract Reader
+
+1. Navigate to the `contract-reader` directory.
+2. Run `php -S localhost:8080`
+3. Open a contract by navigating to `http://localhost:8080/#0x...`
