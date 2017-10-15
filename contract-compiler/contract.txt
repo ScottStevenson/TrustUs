@@ -1,3 +1,4 @@
+let contract = `
 pragma solidity ^0.4.15;
 
 contract GenericTrust {
@@ -11,13 +12,12 @@ contract GenericTrust {
 
   bool public deceasedConfirmerTriggerEnabled;
   uint public numRequiredDeathConfirmations;
-
   bool public fixedDateTriggerEnabled;
   uint public fixedDate; // All dates in unix time (seconds since epoch)
-
   bool public piggyBankTriggerEnabled;
   uint public piggyBankTriggerAmount;
 
+  bool public trustorAlive = true;
   uint public deploymentDate;
   bool public trustClosed = false;
   // TODO: Add deceased confirmer array
@@ -58,7 +58,6 @@ contract GenericTrust {
     beneficiary = _beneficiary;
     revocable = _revocable;
     deceasedPulseTriggerEnabled = _deceasedPulseTriggerEnabled;
-    deceasedPulseTriggerRate = _deceasedPulseTriggerRate;
     deceasedConfirmerTriggerEnabled = _deceasedConfirmerTriggerEnabled;
     numRequiredDeathConfirmations = _numRequiredDeathConfirmations;
     fixedDateTriggerEnabled = _fixedDateTriggerEnabled;
@@ -84,8 +83,7 @@ contract GenericTrust {
 
     // OR of conditions which permit beneficiary to withdraw
     if((fixedDateTriggerEnabled && block.timestamp > fixedDate) ||
-    (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate) ||
-    (piggyBankTriggerEnabled && this.balance >= piggyBankTriggerAmount)) {
+    (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate)) {
 
       beneficiary.transfer(this.balance);
       Withdraw(msg.sender, this.balance);
@@ -111,7 +109,6 @@ contract GenericTrust {
            public {
 
     lastPulse = block.timestamp;
-    Pulse();
 
   }
 
@@ -169,4 +166,4 @@ contract GenericTrust {
     require(!isTrustorDeceased());
     _;
   }
-}
+}`;
