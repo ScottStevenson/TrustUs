@@ -54,6 +54,9 @@ export function prevStep(step, i){
   }
 }
 
-export function submit(){
-  //
+export function submit(form){
+  return dispatch => {
+    console.log('submitted yo', form)
+    
+  }
 }

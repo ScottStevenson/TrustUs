@@ -26,10 +26,10 @@ const initialState = {
     {
       secondaryForm: true,
       secondaryFormShow: false,
+      name: "trigger",
       schema: {
         title: "Trigger",
         type: "object",
-        name: "trigger",
         required: ["trigger"],
         properties: {
           "trigger": {
@@ -147,10 +147,11 @@ export default function reducer(state = initialState, action = {}){
   let obj = { ...state }
   switch(action.type) {
 
-    case 'UPDATE_FORM_DATA':
 
+    case 'UPDATE_FORM_DATA':
+      let selected = obj.steps[action.index].formData[action.name]
       if(action.secondary) {
-        obj.steps[action.index][name].formData = action.data
+        obj.steps[action.index].schema.secondaryForms[selected].formData = action.data
       } else {
         obj.steps[action.index].formData = action.data
       }
