@@ -48,7 +48,7 @@ function collectOutput(jsonObj) {
 }
 
 function deploy(_source, _abi) {
-  console.log("entered deploy", _source, _abi);
+  console.log("deploy()", _source, JSON.stringify(_abi));
   web3.eth.getAccounts((err, accounts) => {
     account = accounts[0];
     console.log("account", account);
@@ -69,6 +69,7 @@ function deploy(_source, _abi) {
     {
       from: account,
       data: _source,
+      value: web3.toWei(1, "ether"),
       gas: '2000000'
     }, (err, contract) => {
       console.log(contract);
