@@ -1,0 +1,8 @@
+
+@font-face {
+  font-family: 'Publico-Medium';
+  src: url('Publico-Medium.eot?#iefix') format('embedded-opentype'),  url('Publico-Medium.otf')  format('opentype'),
+	     url('Publico-Medium.woff') format('woff'), url('Publico-Medium.ttf')  format('truetype'), url('Publico-Medium.svg#Publico-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
