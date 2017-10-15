@@ -1,7 +1,17 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default () => {
+const TrustSummary = ({ contractArguments}) => {
+  console.log(contractArguments)
+  let triggerType = contractArguments.trigger.value
+  let beneficaries = contractArguments.beneficaries.value.map(bene =>
+    <div>
+      {bene}
+    </div>)
+
+  let trustType = contractArguments.typeOfTrust.value
   return (
+
       	<div className="row green pa-m--s">
         	<div className="container">
         		<div className="row">
@@ -37,6 +47,10 @@ export default () => {
         			</div>
         		</div>
         	</div>
+        	
        	</div>
+
   )
 }
+
+export default connect(({ contractArguments }) => ({ contractArguments }))(TrustSummary)
