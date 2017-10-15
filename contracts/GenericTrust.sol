@@ -11,12 +11,13 @@ contract GenericTrust {
 
   bool public deceasedConfirmerTriggerEnabled;
   uint public numRequiredDeathConfirmations;
+
   bool public fixedDateTriggerEnabled;
   uint public fixedDate; // All dates in unix time (seconds since epoch)
+
   bool public piggyBankTriggerEnabled;
   uint public piggyBankTriggerAmount;
 
-  bool public trustorAlive = true;
   uint public deploymentDate;
   bool public trustClosed = false;
   // TODO: Add deceased confirmer array
@@ -83,7 +84,8 @@ contract GenericTrust {
 
     // OR of conditions which permit beneficiary to withdraw
     if((fixedDateTriggerEnabled && block.timestamp > fixedDate) ||
-    (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate)) {
+    (deceasedPulseTriggerEnabled && block.timestamp > lastPulse + deceasedPulseTriggerRate) ||
+    (piggyBankTriggerEnabled && this.balance >= piggyBankTriggerAmount)) {
 
       beneficiary.transfer(this.balance);
       Withdraw(msg.sender, this.balance);
@@ -109,6 +111,7 @@ contract GenericTrust {
            public {
 
     lastPulse = block.timestamp;
+    Pulse();
 
   }
 
