@@ -59,7 +59,7 @@ export function prevStep(step, i){
 export function submit(web3, form){
   return dispatch => {
     console.log('submitted yo', form)
-    deployContract(web3)
+    deployContract(web3, form)
   }
 }
 
