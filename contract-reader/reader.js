@@ -37,7 +37,12 @@ function readContract(address) {
     myContract.pulse({
       gas: 99000
     }, (err, result) => {
-      console.log(err, result);
+      console.log("pulse()", err, result);
+    });
+
+    /* getbalance */
+    web3.eth.getBalance(address, (err, result) => {
+      document.getElementById('balance').innerHTML = "Balance: ETH " + (result.toNumber() / 10**18);
     });
 
     /* static call format */
@@ -51,11 +56,13 @@ function readContract(address) {
     });
 
     myContract.revocable.call((err, result) => {
-      console.log('Revocable: ' + result);
+      console.log("revocable?", result);
+      document.getElementById('revocable').innerHTML = result;
     });
 
     myContract.isTrustorDeceased.call((err, result) => {
       console.log('Is Trustor Deceased: ' + result);
+      document.getElementById('deceased').innerHTML = result;
     });
   });
 }

@@ -10,6 +10,7 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     </head>
     <body>
+
         <div class="green height pa-m--s">
             <div class="container">
                 <div class="row pa-m--s">
@@ -26,10 +27,21 @@
                     </svg>
                 </div>
                 <div class="row">
-                    <h1>Reader</h1>
-                    <h2 id=balance></h2>
+                    <div class="col m8 offset-m2">
+                        <h1>Reader</h1>
+                        <h2>Contract Balance: <span id=balance></span> </h2>
+                        <div class="row white pa-m--s center-align">
+                            <h2>Contract Details</h2>
+                            <table>
+                              <tr><td>Type:</td><td>Trust</td></tr>
+                              <tr><td>Revocable:</td><td id=revocable></td></tr>
+                              <tr><td>Trustor dead?</td><td id=deceased></td></tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
