@@ -1,0 +1,339 @@
+// Materialize CSS
+@import "components/color";
+@import "components/variables";
+// Materialize CSS
+@import "node_modules/materialize-css/sass/materialize";
+@import "components/globals";
+@import "components/sizers";
+@import "components/aligners";
+@import "components/typography";
+@import "components/glyphicon";
+
+.windmill-container {
+  position:relative;
+  width:100%;
+  margin:0 auto;
+  height:387px;
+  padding:0;
+}
+
+.sign {
+  background:#000;
+  clear:both;
+  color:#fff;
+  text-align:center;
+  padding:2.5em 40px 3.5em;
+  margin:0;
+}
+
+.sign h1 {
+  color:#fff;
+ 
+  font-size:4em;
+  margin:0;
+  letter-spacing:-0.03em;
+}
+
+.sign p {
+  color:#fff;
+  margin:0;
+  font-size:18px;
+}
+
+.stolby {
+  position:absolute;
+  left:0;
+  top:0;
+}
+
+#v1, #v2, #v3, #v4 {
+     animation: 2s motion1 infinite linear;
+   position:absolute;
+    top:0;
+}
+
+#v1 {
+  left:180px; 
+  top:-178px;
+
+}
+
+#v2 {
+    left:-155px;
+  top:-100px;
+-moz-transform: scale(0.7) rotate(0deg);
+-webkit-transform: scale(0.7) rotate(0deg);
+-o-transform: scale(0.7) rotate(0deg);
+-ms-transform: scale(0.7) rotate(0deg);
+transform: scale(0.7) rotate(0deg);
+  animation: 2s motion2 infinite linear;
+}
+
+#v3 {
+  left:310px;
+  top:0px;
+  -moz-transform: scale(0.5) rotate(0deg);
+  -webkit-transform: scale(0.5) rotate(0deg);
+  -o-transform: scale(0.5) rotate(0deg);
+  -ms-transform: scale(0.5) rotate(0deg);
+  transform: scale(0.5) rotate(0deg);
+  animation: 2s motion3 infinite linear;
+  opacity:0.9;
+}
+
+#v4 {
+  left:184px;
+  top:250px;
+  -moz-transform: scale(0.3) rotate(0deg);
+  -webkit-transform: scale(0.3) rotate(0deg);
+  -o-transform: scale(0.3) rotate(0deg);
+  -ms-transform: scale(0.3) rotate(0deg);
+  transform: scale(0.3) rotate(0deg);
+  animation: 2s motion4 infinite linear;
+  opacity:0.7;
+}
+
+@keyframes motion1 {
+  from {}
+  
+
+  to {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+
+  }
+}
+
+@keyframes motion2 {
+  from {}
+  
+
+  to {
+  -moz-transform: scale(0.7) rotate(360deg);
+  -webkit-transform: scale(0.7) rotate(360deg);
+  -o-transform: scale(0.7) rotate(360deg);
+  -ms-transform: scale(0.7) rotate(360deg);
+  transform: scale(0.7) rotate(360deg);
+
+  }
+}
+
+@keyframes motion3 {
+  from {}
+  
+
+  to {
+  -moz-transform: scale(0.5) rotate(360deg);
+  -webkit-transform: scale(0.5) rotate(360deg);
+  -o-transform: scale(0.5) rotate(360deg);
+  -ms-transform: scale(0.5) rotate(360deg);
+  transform: scale(0.5) rotate(360deg);
+
+  }
+}
+
+@keyframes motion4 {
+  from {}
+  
+
+  to {
+  -moz-transform: scale(0.3) rotate(360deg);
+  -webkit-transform: scale(0.3) rotate(360deg);
+  -o-transform: scale(0.3) rotate(360deg);
+  -ms-transform: scale(0.3) rotate(360deg);
+  transform: scale(0.3) rotate(360deg);
+
+  }
+}
+*{
+	box-sizing: border-box !important;
+}
+.input-field{
+	&.search{
+		margin-top:0;
+		background-color: color("green","darken-2");
+		input{
+			padding: 0 10px;
+			border-bottom:0 !important;
+		}
+		i{
+			margin: 9px;
+		}
+	}
+}
+
+.btn-flush{
+	width: 100% !important;
+}
+.container .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+/* Radio Buttons
+   ========================================================================== */
+
+// Remove default Radio Buttons
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+[type="radio"]:not(:checked) + span,
+[type="radio"]:checked + span {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  font-size: 1rem;
+  transition: .28s ease;
+  user-select: none;
+}
+
+[type="radio"] + span:before,
+[type="radio"] + span:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 4px;
+  width: 16px;
+  height: 16px;
+  z-index: 0;
+  transition: .28s ease;
+}
+
+/* Unchecked styles */
+[type="radio"]:not(:checked) + span:before,
+[type="radio"]:not(:checked) + span:after,
+[type="radio"]:checked + span:before,
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
+  border-radius: 50%;
+}
+
+[type="radio"]:not(:checked) + span:before,
+[type="radio"]:not(:checked) + span:after {
+  border: 2px solid $radio-empty-color;
+}
+
+[type="radio"]:not(:checked) + span:after {
+  transform: scale(0);
+}
+
+/* Checked styles */
+[type="radio"]:checked + span:before {
+  border: 2px solid transparent;
+}
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
+  border: $radio-border;
+}
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:after {
+  background-color: $radio-fill-color;
+}
+
+[type="radio"]:checked + span:after {
+  transform: scale(1.02);
+}
+
+/* Radio With gap */
+[type="radio"].with-gap:checked + span:after {
+  transform: scale(.5);
+}
+
+/* Focused styles */
+[type="radio"].tabbed:focus + span:before {
+  box-shadow: 0 0 0 10px rgba(0,0,0,.1);
+}
+
+/* Disabled Radio With gap */
+[type="radio"].with-gap:disabled:checked + span:before {
+  border: 2px solid $input-disabled-color;
+}
+
+[type="radio"].with-gap:disabled:checked + span:after {
+  border: none;
+  background-color: $input-disabled-color;
+}
+
+/* Disabled style */
+[type="radio"]:disabled:not(:checked) + span:before,
+[type="radio"]:disabled:checked + span:before {
+  background-color: transparent;
+  border-color: $input-disabled-color;
+}
+
+[type="radio"]:disabled + span {
+  color: $input-disabled-color;
+}
+
+[type="radio"]:disabled:not(:checked) + span:before {
+  border-color: $input-disabled-color;
+}
+
+[type="radio"]:disabled:checked + span:after {
+  background-color: $input-disabled-color;
+  border-color: $input-disabled-solid-color;
+}
+[type="radio"] + span{
+	color: color("grey", "darken-4");
+}
+.rjsf{
+	@extend .z-depth-1;
+	@extend .pa-l--s;
+	margin-top: 20px;
+}
+
+.form-group{
+	
+	fieldset, legend {
+	  margin: 0;
+	  padding: 0;
+	}
+	fieldset {
+	  border: thin solid white;
+	  margin: 0 auto;
+	  width: 100%;
+	}
+	legend {
+		font-weight: bold;
+	  	float: left;
+	  	margin-bottom: .5em;
+	  	width: 100%;
+	  	font-size: 2em;
+	  	@extend .publico;
+	}
+}
+.form-group + div{
+	margin-top:50px;
+	button{
+		&:first-child{
+			@extend .btn;
+			float: right;
+		}
+		&:last-child{
+			@extend .btn-flat;
+		}
+	}
+}
+.btn{
+	i.glyphicon{
+		    vertical-align: top;
+		font-size:20px;
+	}
+}
+.array-item-remove{
+	flex: none !important;
+}
