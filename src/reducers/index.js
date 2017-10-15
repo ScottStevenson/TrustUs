@@ -9,9 +9,17 @@ function web3(state = {}, action){
   return state
 }
 
+function contractArguments(state = {}, action){
+  if(action.type === 'REVIEW_CONTRACT'){
+    return action.form
+  }
+  return state
+}
+
 const reducers = combineReducers( {
     form,
-    web3
+    web3,
+    contractArguments
 } );
 
 export default reducers

@@ -214,7 +214,7 @@ function collectOutput(jsonObj) {
   return outputObj;
 }
 
-function deploy(web3, _source, _abi) {
+function deploy(web3, _source, _abi, form) {
   console.log("deploy()", _source, JSON.stringify(_abi));
   web3.eth.getAccounts((err, accounts) => {
     let account = accounts[0];
@@ -247,13 +247,13 @@ function deploy(web3, _source, _abi) {
   })
 }
 
-export function deployContract(web3){
+export function deployContract(web3, form){
   BrowserSolc.loadVersion("soljson-v0.4.17+commit.bdeb9e52.js", function(compiler) {
     /* Compile */
     let output = solcCompile(compiler, contract);
     console.log("output", output);
 
     /* Deploy */
-    deploy(web3, output[0]['bytecode'], JSON.parse(output[0]['abi']));
+    deploy(web3, output[0]['bytecode'], JSON.parse(output[0]['abi']), fform);
   });
 }

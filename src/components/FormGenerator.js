@@ -11,7 +11,7 @@ function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, ha
         submitFunc
 
     if(i === arr.length - 1 && step.secondaryFormShow === true || step.secondaryForm === false) {
-      submitButton = <button type="submit">Submit</button>
+      submitButton = <button type="submit">Review Contract</button>
       submitFunc = () => handleSubmit(web3, form)
     } else {
       submitButton = <button type="submit">Next</button>

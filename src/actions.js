@@ -13,6 +13,13 @@ function incrementStep(num){
   }
 }
 
+function decrementStep(num){
+  return {
+    type: 'DECREMENT_STEP',
+    currentStep: num
+  }
+}
+
 export function onChange(index, name, data, secondary){
   return {
     type: 'UPDATE_FORM_DATA',
@@ -51,7 +58,7 @@ export function prevStep(step, i){
       dispatch(toggleSecondaryForm(i, step.name))
     } else {
       // update normal
-      dispatch(incrementStep(i - 1))
+      dispatch(decrementStep(i - 1))
     }
   }
 }
@@ -60,6 +67,13 @@ export function submit(web3, form){
   return dispatch => {
     console.log('submitted yo', form)
     deployContract(web3, form)
+  }
+}
+
+export function reviewContract(form){
+  return {
+    type: "REVIEW_CONTRACT",
+    form
   }
 }
 

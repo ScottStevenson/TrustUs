@@ -15,7 +15,7 @@ const initialState = {
               'Revocable'
             ],
             "enumNames":[
-              'Irrevocable Trust', 
+              'Irrevocable Trust',
               'Revocable Trust'
             ]
           }
@@ -170,7 +170,16 @@ export default function reducer(state = initialState, action = {}){
       obj.steps[action.index].secondaryFormShow = !obj.steps[action.index].secondaryFormShow
       return obj
 
+    case 'INCREMENT_STEP':
+      return {
+        ...state,
+        currentStep: action.currentStep
+      }
+
     default:
       return state
+
+
+
   }
 }
