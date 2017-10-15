@@ -254,7 +254,7 @@ function deploy(web3, _source, _abi, form) {
     fixedDateEnabled,
     fixedDate,
     piggyBankEnabled,
-    piggyBankTriggerAmount)
+    piggyBankTriggerAmount);
 
     var contract = web3.eth.contract(_abi)
 
@@ -288,6 +288,7 @@ function deploy(web3, _source, _abi, form) {
           console.log("contract.new#2", contractInstance.address);
         }
       }
+
       // if (typeof contractInstance.transactionHash !== 'undefined') {
       //   // wait for transaction to get mined
       //   web3.eth.getTransaction(contractInstance.transactionHash, (err, response) => {
@@ -299,6 +300,7 @@ function deploy(web3, _source, _abi, form) {
       // }
       //
       // console.log('ADDRESS', contractInstance.address)
+
     })
   })
 }
