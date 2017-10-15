@@ -12,8 +12,15 @@ window.onload = function() {
   }
 
   // Read contract address from url; store in window.address
-  window.address = window.location.hash;
+  address = window.location.hash;
   if (typeof address !== 'undefined') {
-    window.address = window.address.substr(1); // remove leading '#'
+    address = address.substr(1); // remove leading '#'
   }
+
+  // Read contract details
+  readContract(address);
+}
+
+function readContract(_address) {
+  
 }
