@@ -9564,7 +9564,8 @@ small {
   color: #212121; }
 
 .rjsf {
-  margin-top: 20px; }
+  margin-top: 20px;
+  background-color: #fff; }
 
 .form-group fieldset, .form-group legend {
   margin: 0;

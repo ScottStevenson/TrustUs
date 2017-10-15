@@ -13,8 +13,8 @@ const Root = ( { store } ) => (
             <div>
               <Route exact path="/" component={App} />
               <Route path="/contracts" component={Contracts} />
-              <Route path="/contracts/trust" component={Trust} />
-              <Route path="/contracts/trust/summary" component={TrustSummary} />
+              <Route path="/trust" component={Trust} />
+              <Route path="/summary" component={TrustSummary} />
             </div>
         </Router>
     </Provider>
