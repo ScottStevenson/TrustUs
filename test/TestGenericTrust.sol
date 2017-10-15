@@ -8,8 +8,8 @@ contract TestGenericTrust {
 
   function testConstruction() {
     GenericTrust genericTrust =
-      new GenericTrust(0x05fe3bf44e4ba31284576955c991ac412b52a335,
-      0x1da1bc9a5ec7355670cce76ae26b120f5456b99d,
+      new GenericTrust(0xaf59127c395d71af0736ec48a0bc1eadc704a460,
+      0x2126e2b0939e0b0b2623d1d30d5cd3e3dead1869,
       true,
       true,
       61,
