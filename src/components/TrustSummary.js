@@ -6,7 +6,7 @@ const TrustSummary = ({ contractArguments, web3, deploy}) => {
   let triggerType = contractArguments.trigger.value
   let beneficaries = contractArguments.beneficaries.value.map(bene =>
     <div>
-      {bene}
+      <span className="yellow">{bene}</span>
     </div>)
 
   let trustType = contractArguments.typeOfTrust.value
@@ -31,7 +31,7 @@ const TrustSummary = ({ contractArguments, web3, deploy}) => {
 	    				<p>Enter the name of the SETTLOR (person making the trust), referred to herein as SETTLOR, and Name the initial TRUSTEE, referred to herein as TRUSTEE, (the singular term "TRUSTEE" shall refer to multiple TRUSTEES if multiple TRUSTEES are appointed) in consideration of the covenants and undertakings herein agree:
 	    				</p>
               <div className="row">
-              <p><span className="yellow">{beneficaries}</span></p>
+              <p>{beneficaries}</p>
               <h3><span className="yellow">{triggerType}</span></h3>
               </div>
 	    				<h3 className="tw-ultrabold mt-m--s">ARTICLE I </h3>
