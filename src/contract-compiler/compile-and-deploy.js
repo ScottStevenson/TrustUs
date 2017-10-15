@@ -228,24 +228,39 @@ function deploy(web3, _source, _abi, form) {
     let pulseRate = 0
 
 
-    switch(form.trigger) {
+
+    switch(form.trigger.value) {
       case 'Death':
         pulse = true
-        pulseRate = form.trigger.details.pulse
+        pulseRate = form.trigger.details.pulse * 60 * 60 * 24
+        break
       case 'Fixed Date':
         fixedDateEnabled = true
         fixedDate = form.trigger.details.fixedDate
+        break
       case 'Target Ether Amount':
         piggyBankEnabled = true
         piggyBankTriggerAmount = form.trigger.details['Target Ether Amount']
+        break
     }
 
-
+    console.log(account,
+    form.beneficaries.value[0],
+    revocable,
+    pulse,
+    pulseRate,
+    false,
+    0,
+    fixedDateEnabled,
+    fixedDate,
+    piggyBankEnabled,
+    piggyBankTriggerAmount)
 
     var contract = web3.eth.contract(_abi)
-    contract.new(
+
+    let contractReturned = contract.new(
       account,
-      form.beneficaries[0],
+      form.beneficaries.value[0],
       revocable,
       pulse,
       pulseRate,
@@ -258,13 +273,15 @@ function deploy(web3, _source, _abi, form) {
     {
       from: account,
       data: _source,
-      value: web3.toWei(1, "ether"),
+      value: web3.toWei(0, "ether"),
       gas: '2000000'
-    }, (err, contract) => {
-      console.log(contract);
-      if (typeof contract.address !== 'undefined') {
-        console.log('Mined', contract.address, contract.transactionHash);
+    }, (err, contractInstance) => {
+      console.log('THIS IS THE CONTRACT', contractInstance);
+      if (typeof contractInstance.address !== 'undefined') {
+        console.log('Mined', contractInstance.address, contractInstance.transactionHash);
       }
+
+      console.log('ADDRESS', contractInstance.address)
     })
   })
 }

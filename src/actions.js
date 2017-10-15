@@ -39,13 +39,15 @@ function toggleSecondaryForm(index, name){
 
 export function nextStep(step, i) {
   return dispatch => {
-    if(step.secondaryForm){
+    if(step.secondaryFormShow === true) {
+      dispatch(incrementStep(i + 1))
+    } else if (step.secondaryForm){
       // update secondary formData
       dispatch(toggleSecondaryForm(i, step.name))
     } else {
       // update normal
       dispatch(incrementStep(i + 1))
-    }
+    } 
   }
   //increment state of form
 }
