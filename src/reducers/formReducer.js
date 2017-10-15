@@ -116,7 +116,29 @@ const initialState = {
         }
       }
     },
-
+    {
+      secondaryForm: false,
+      schema: {
+        title: "Beneficaries",
+        type: "object",
+        required: ["beneficaries"],
+        properties: {
+          "beneficaries": {
+            "type": "array",
+            "title": "Beneficaries",
+            "items": {
+              "type": "string",
+            }
+          }
+        }
+      },
+      formData: {},
+      uiSchema: {
+        typeOfTrust: {
+          "ui:widget": "radio"
+        }
+      }
+    },
   ],
   currentStep: 0,
 }

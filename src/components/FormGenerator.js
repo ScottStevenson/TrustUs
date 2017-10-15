@@ -3,29 +3,12 @@ import Form from "react-jsonschema-form"
 import { connect } from 'react-redux'
 import { submit, nextStep, prevStep, onChange} from '../actions'
 
-// function nextStep(step) {
-//   if(step.secondaryForm){
-//     // update secondary formData
-//   } else {
-//     // update normal
-//   }
-//
-//   //increment state of form
-// }
-//
-// function prevStep(){
-//   //decrement state of form
-// }
-//
-// function submit(){
-//   //
-// }
 
 function FormGenerator ({ form, handleSubmit, handleNextStep, handlePrevStep, handleOnChange }) {
   let steps = form.steps.map((step, i, arr) => {
     let submitButton,
         submitFunc
-    if(i === arr.length - 1 && step.secondaryFormShow === true) {
+    if(i === arr.length - 1 && step.secondaryFormShow === true || step.secondaryForm === false) {
       submitButton = <button type="submit">Submit</button>
       submitFunc = submit
     } else {
