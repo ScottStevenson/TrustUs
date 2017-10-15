@@ -28,7 +28,7 @@ class App extends Component {
             <div className="col m6">
               <h1 className="publico text-xl">Hello...</h1>
               <h2 className="publico">Lets Build a Smart Contract!</h2>
-              <p>Create a smart contract with no solidity experience, embrace the power of the blockchain today</p>
+              <p>Create a smart contract with zero programming experience. Embrace the power of the blockchain today.</p>
               <a href="/contracts" className="btn-large amber darken-2 mt-m--s">Get Started</a>
             </div>
             <div className="col m6">

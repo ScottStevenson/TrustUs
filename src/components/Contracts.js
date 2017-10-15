@@ -7,7 +7,7 @@ export default () => {
         <div className="container">
           <div className="row">
             <div className="col m4">
-              <img src="img/logo-white.svg" alt="" /> 
+              <img src="img/logo-white.svg" alt="" />
             </div>
             <div className="col m4 right">
               <div className="input-field search">
@@ -36,7 +36,7 @@ export default () => {
               <div className="row">
                 <a href="" className="btn-large btn-flush grey-text text-darken-3">Start Building</a>
               </div>
-            </div>  
+            </div>
           </div>
 
           <div className="row pa-m--s mt-m--s ">
@@ -44,8 +44,8 @@ export default () => {
               <div className="row white pa-m--s">
                 <div className="row">
                   <div className="col m7">
-                    <h2 className="publico">Trust Contract</h2>
-                    <p className="text-m">A non-disclosure agreement is a legal contract between at least two parties that outlines confidential material, knowledge, or information that the parties wish to share with one another for certain purposes, but wish to restrict access to or by third parties</p>
+                    <h2 className="publico">Trust</h2>
+                    <p className="text-m">This trust is a three-party fiduciary relationship in which the first party, the trustor or settlor, transfers a property upon the second party (in this case, the smart contract itself) for the benefit of the third party, the beneficiary.</p>
                   </div>
                   <div className="col m4 right">
                     <h4>Overall Score: 9.5/10</h4>
@@ -59,7 +59,7 @@ export default () => {
               <div className="row">
                 <a href="/trust" className="btn-large btn-flush grey-text text-darken-3">Start Building</a>
               </div>
-            </div>  
+            </div>
           </div>
 
         </div>

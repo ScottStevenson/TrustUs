@@ -35,7 +35,7 @@ const initialState = {
       secondaryFormShow: false,
       name: "trigger",
       schema: {
-        title: "Trigger",
+        title: "Withdrawal Trigger",
         type: "object",
         properties: {
           "trigger": {
@@ -75,7 +75,7 @@ const initialState = {
               properties: {
                 "pulse": {
                   "type": "integer",
-                  "title": "Number of days between pulse"
+                  "title": "Maximum number of days between pulses"
                 }
               },
             },

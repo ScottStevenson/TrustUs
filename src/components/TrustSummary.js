@@ -43,7 +43,7 @@ const TrustSummary = ({ contractArguments, web3, deploy}) => {
         			</div>
         			<div className="col m4 pa-m--s">
         				<div className="row red pa-m--s z-depth-1">
-        					<p className="white-text">WARNING: Upon deployment this contract is irreversible. Please take the precaution of proof reading your doc. Thanks</p>
+        					<p className="white-text">WARNING: Upon deployment this contract cannot be altered. Please take the precaution of proof reading the intent of your document. Thank for using TrustUs!</p>
         				</div>
         				<div className="row mt-m--s">
         					<button className="btn-large btn-flush secondary " onClick={() => deploy(web3, contractArguments)}>DEPLOY </button>
