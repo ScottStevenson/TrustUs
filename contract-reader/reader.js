@@ -23,6 +23,39 @@ window.onload = function() {
 
 // Main program entry point
 function readContract(address) {
-  var contract = web3.eth.contract(address, abi);
-  console.log(contract);
+
+  // Read account details
+  web3.eth.getAccounts((err, accounts) => {
+    account = accounts[0];
+
+    // Reference contract
+    contract = web3.eth.contract(JSON.parse(abi));
+    myContract = contract.at(address);
+    console.log(myContract);
+
+    /* transaction call format */
+    myContract.pulse({
+      gas: 99000
+    }, (err, result) => {
+      console.log(err, result);
+    });
+
+    /* static call format */
+    myContract.trustClosed.call((err, result) => {
+      console.log('Trust Closed: ' + result);
+    });
+
+    /* static call format */
+    myContract.lastPulse.call((err, result) => {
+      console.log('Last Pulse: ' + result.toNumber());
+    });
+
+    myContract.revocable.call((err, result) => {
+      console.log('Revocable: ' + result);
+    });
+
+    myContract.isTrustorDeceased.call((err, result) => {
+      console.log('Is Trustor Deceased: ' + result);
+    });
+  });
 }
