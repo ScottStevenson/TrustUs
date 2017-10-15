@@ -337,3 +337,9 @@ transform: scale(0.7) rotate(0deg);
 .array-item-remove{
 	flex: none !important;
 }
+legend#root_beneficaries__title {
+    font-family: source sans pro !important;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: color("grey","darken-4")
+}

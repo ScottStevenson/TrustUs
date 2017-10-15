@@ -4,7 +4,6 @@ const initialState = {
       schema: {
         title: "Type of Trust",
         type: "object",
-        required: ["typeOfTrust"],
         properties: {
           "typeOfTrust": {
             "type": "string",
@@ -37,7 +36,6 @@ const initialState = {
       schema: {
         title: "Trigger",
         type: "object",
-        required: ["trigger"],
         properties: {
           "trigger": {
             "type": "string",
@@ -55,7 +53,6 @@ const initialState = {
             schema: {
               title: "Fixed Date",
               type: "object",
-              required: ["fixedDate"],
               properties: {
                 "fixedDate": {
                   "type": "string",
@@ -74,7 +71,6 @@ const initialState = {
             schema: {
               title: "Death",
               type: "object",
-              required: ["fixedDate"],
               properties: {
                 "pulse": {
                   "type": "integer",
@@ -88,7 +84,6 @@ const initialState = {
             schema: {
               title: "Price of Ether",
               type: "object",
-              required: ["Price of Ether"],
               properties: {
                 "Price of Ether": {
                   "type": "integer",
@@ -102,7 +97,6 @@ const initialState = {
             schema: {
               title: "Amount of Ether",
               type: "object",
-              required: ["Amount of Ether"],
               properties: {
                 "Amount of Ether": {
                   "type": "integer",
@@ -119,20 +113,22 @@ const initialState = {
       },
       uiSchema: {
         trigger: {
-          "ui:widget": "radio"
+          "ui:widget": "radio",
+          "ui:options": {
+            label: false
+          }
         }
       }
     },
     {
       secondaryForm: false,
       schema: {
-        title: "Beneficaries",
+        title: "Beneficiary",
         type: "object",
-        required: ["beneficaries"],
         properties: {
           "beneficaries": {
             "type": "array",
-            "title": "Beneficaries",
+            "title": "Add a beneficiary",
             "items": {
               "type": "string",
             }
@@ -141,8 +137,11 @@ const initialState = {
       },
       formData: {},
       uiSchema: {
-        typeOfTrust: {
-          "ui:widget": "radio"
+        beneficaries: {
+          "ui:widget": "radio",
+          "ui:options": {
+            "orderable": false
+          }
         }
       }
     },
