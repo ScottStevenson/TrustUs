@@ -11,6 +11,7 @@ const Root = ( { store } ) => (
         </Router>
     </Provider>
 );
+
 Root.propTypes = {
     store: PropTypes.oneOfType( [
         PropTypes.func.isRequired,
