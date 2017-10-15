@@ -1,0 +1,51 @@
+.row{
+	margin-bottom: 0px;
+	padding:0px;
+	.col{
+		padding: 0 0; 
+	}
+}
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+@media #{$medium-and-up} {
+  .container {
+    max-width: 1108px;
+    width:95%;
+
+  }
+}
+@media #{$large-and-up} {
+  .container {
+    max-width: 1108px;
+
+  }
+}
+
+.brand-logo{
+  height:100%;
+  img{
+    vertical-align:middle;
+    max-height:45px;
+    @media #{$large-and-up} {
+      width:45%;
+    }
+  }
+}
+
+@font-face {
+  font-family: 'publico';
+  src:url('../fonts/publico/publico.eot?#iefix') format('embedded-opentype'),  
+      url('../fonts/publico/publico.otf')  format('opentype'),
+      url('../fonts/publico/publico.woff') format('woff'), 
+      url('../fonts/publico/publico.ttf')  format('truetype'), 
+      url('../fonts/publico/publico.svg#Publico-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.publico{
+  font-family: 'publico' !important;
+}

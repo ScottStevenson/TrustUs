@@ -32,12 +32,14 @@
     "http-proxy-middleware": "0.17.2",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
+    "node-sass": "^4.5.3",
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
     "react-dev-utils": "^0.4.2",
     "recursive-readdir": "2.1.0",
+    "sass-loader": "^6.0.6",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "truffle-contract": "^1.1.8",
@@ -50,6 +52,8 @@
   },
   "dependencies": {
     "dotenv": "^2.0.0",
+    "materialize-css": "^0.100.2",
+    "nodemon": "^1.12.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-jsonschema-form": "^0.51.0",
@@ -63,7 +67,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "css": "node-sass --include-path scss src/sass/style.scss public/css/style.css",
+    "watch-css": "nodemon -e scss -x \"npm run css\""
   },
   "jest": {
     "collectCoverageFrom": [
