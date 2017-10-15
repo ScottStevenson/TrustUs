@@ -39,7 +39,7 @@ function readContract(address) {
 
     /* getbalance */
     web3.eth.getBalance(address, (err, result) => {
-      document.getElementById('balance').innerHTML = "Balance: ETH " + (result.toNumber() / 10**18);
+      document.getElementById('balance').innerHTML = "ETH " + (result.toNumber() / 10**18);
     });
 
     /* static call format */
