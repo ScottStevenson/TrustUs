@@ -3,8 +3,8 @@ var GenericTrust = artifacts.require("./GenericTrust.sol");
 
 module.exports = function(deployer) {
 
-  const trustor = '0x413c5d52ad3c7c86004e960c3eb2b01706ea4140';
-  const beneficiary = '0x1da1bc9a5ec7355670cce76ae26b120f5456b99d';
+  const trustor = '0xaf59127c395d71af0736ec48a0bc1eadc704a460';
+  const beneficiary = '0x2126e2b0939e0b0b2623d1d30d5cd3e3dead1869';
   const revocable = true;
   const deceasedPulseTriggerEnabled = true;
   const deceasedPulseTriggerRate = 61; // seconds
