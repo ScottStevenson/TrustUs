@@ -9129,6 +9129,16 @@ h6, .h6 {
   line-height: 110%;
   margin: 0.4165rem 0 0.3332rem 0; }
 
+.text-s {
+  font-size: .8rem;
+  line-height: 110%;
+  margin: 1.1rem 0 0.88rem 0; }
+
+.text-m {
+  font-size: .9rem;
+  line-height: 110%;
+  margin: 1.1rem 0 0.88rem 0; }
+
 .text-l {
   font-size: 2.2rem;
   line-height: 110%;
@@ -9296,3 +9306,15 @@ small {
     -o-transform: scale(0.3) rotate(360deg);
     -ms-transform: scale(0.3) rotate(360deg);
     transform: scale(0.3) rotate(360deg); } }
+
+* {
+  box-sizing: border-box !important; }
+
+.input-field.search {
+  margin-top: 0;
+  background-color: #00771c; }
+  .input-field.search input {
+    padding: 0 10px;
+    border-bottom: 0 !important; }
+  .input-field.search i {
+    margin: 9px; }

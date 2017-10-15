@@ -249,15 +249,27 @@ class App extends Component {
           <div className="container">
             <div className="row">
               <div className="col m4">
-                <img src="img/logo.svg" alt="" /> 
+                <img src="img/logo-white.svg" alt="" /> 
               </div>
               <div className="col m4 right">
-                <div className="input-field">
+                <div className="input-field search">
                   <i className="material-icons prefix">search</i>
-                  <input id="icon_telephone" type="tel" class="validate" />
-                  <label for="icon_telephone">Telephone</label>
+                  <input id="icon_telephone" type="search" class="validate" />
                 </div>
               </div>
+            </div>
+            <div className="row pa-m--s mt-m--s">
+              <div className="col m8 offset-m2">
+                <div className="row white pa-m--s">
+                  <div className="col m7">
+                    <h2 className="publico">Non-Disclosure Agreement</h2>
+                    <p className="text-m">A non-disclosure agreement is a legal contract between at least two parties that outlines confidential material, knowledge, or information that the parties wish to share with one another for certain purposes, but wish to restrict access to or by third parties</p>
+                  </div>
+                  <div className="col m4 right">
+                  <h4>Overall Score: 9.5/10</h4>
+                  </div>
+                </div>
+              </div>  
             </div>
           </div>
         </div>

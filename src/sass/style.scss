@@ -147,3 +147,19 @@ transform: scale(0.7) rotate(0deg);
 
   }
 }
+*{
+	box-sizing: border-box !important;
+}
+.input-field{
+	&.search{
+		margin-top:0;
+		background-color: color("green","darken-2");
+		input{
+			padding: 0 10px;
+			border-bottom:0 !important;
+		}
+		i{
+			margin: 9px;
+		}
+	}
+}
