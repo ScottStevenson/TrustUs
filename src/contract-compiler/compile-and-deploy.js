@@ -277,13 +277,41 @@ function deploy(web3, _source, _abi, form) {
       gas: '2000000'
     }, (err, contractInstance) => {
       console.log('THIS IS THE CONTRACT', contractInstance);
-      if (typeof contractInstance.address !== 'undefined') {
-        console.log('Mined', contractInstance.address, contractInstance.transactionHash);
-      }
+      if (!err) {
+        if (!contractInstance.address) {
+          // Log transaction hash on first call
+          console.log("contract.new#1", contractInstance.transactionHash);
 
-      console.log('ADDRESS', contractInstance.address)
+          // Wait for address
+          pollForContract(web3, contractInstance.transactionHash);
+        } else {
+          console.log("contract.new#2", contractInstance.address);
+        }
+      }
+      // if (typeof contractInstance.transactionHash !== 'undefined') {
+      //   // wait for transaction to get mined
+      //   web3.eth.getTransaction(contractInstance.transactionHash, (err, response) => {
+      //     console.log("getTransaction", err, response);
+      //   });
+      // }
+      // if (typeof contractInstance.address !== 'undefined') {
+      //   console.log('Mined', contractInstance.address, contractInstance.transactionHash);
+      // }
+      //
+      // console.log('ADDRESS', contractInstance.address)
     })
   })
+}
+
+function pollForContract(web3, txHash) {
+  web3.eth.getTransactionReceipt(txHash, (err, result) => {
+    if (result && typeof result.contractAddress !== 'undefined') {
+      console.log("finally", result.contractAddress);
+      window.location.replace("http://localhost:8080/#" + result.contractAddress);
+    } else {
+      window.setTimeout(1000, pollForContract(web3, txHash));
+    }
+  });
 }
 
 export function deployContract(web3, form){
