@@ -1,0 +1,41 @@
+.left-align {
+  text-align: left;
+}
+.right-align {
+  text-align: right
+}
+.center-align {
+  text-align: center;
+}
+
+.left-align--s {
+  text-align: left;
+}
+.right-align--s {
+  text-align: right
+}
+.center-align--s {
+  text-align: center;
+}
+@media #{$medium-and-up}{
+  .left-align--m {
+    text-align: left;
+  }
+  .right-align--m {
+    text-align: right
+  }
+  .center-align--m {
+    text-align: center;
+  }
+}
+@media #{$large-and-up}{
+  .left-align--l {
+    text-align: left;
+  }
+  .right-align--l {
+    text-align: right
+  }
+  .center-align--l {
+    text-align: center;
+  }
+}

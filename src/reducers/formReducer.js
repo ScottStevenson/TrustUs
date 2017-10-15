@@ -13,6 +13,10 @@ const initialState = {
             "enum": [
               'Irrecovable',
               'Revocable'
+            ],
+            "enumNames":[
+              'Irrevocable Trust', 
+              'Revocable Trust'
             ]
           }
         }
@@ -20,7 +24,10 @@ const initialState = {
       formData: {},
       uiSchema: {
         typeOfTrust: {
-          "ui:widget": "radio"
+          "ui:widget": "radio",
+          "ui:options": {
+            label: false
+          }
         }
       }
     },
